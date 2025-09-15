@@ -1,9 +1,30 @@
 
+import { Suspense } from 'react';
 import './App.css'
 import Counter from './Counter';
 import Batsman from './Sports';
+import Users from './Users';
+import Friends from './Friends';
+
+
+
+
+const fetchUsers = fetch("https://jsonplaceholder.typicode.com/users")
+.then((res) => res.json())
+
+
+
+const fetchFriendsData = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  return res.json();
+}
+
+
+
 
 function App() {
+
+const friendsData = fetchFriendsData();
 
   function handleClick (){
     alert('I am click')
@@ -23,6 +44,15 @@ function App() {
 
   
       <h1>Vite + React</h1>
+
+      <Suspense fallback={<h1> Friends coming for treat....</h1>}>
+        <Friends friendsData = {friendsData}/>
+      </Suspense>
+
+
+      <Suspense fallback={<h3>Loading ....</h3>}>
+        <Users fetchUsers={fetchUsers}/>
+      </Suspense>
 
     <Batsman/>
       
