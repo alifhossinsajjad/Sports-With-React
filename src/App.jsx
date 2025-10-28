@@ -9,6 +9,7 @@ import Friends from './Friends';
 
 
 
+
 const fetchUsers = fetch("https://jsonplaceholder.typicode.com/users")
 .then((res) => res.json())
 
@@ -35,7 +36,7 @@ const friendsData = fetchFriendsData();
   }
 
   const handleAdd = (num) => {
-    const addNUmber = num + 1; 
+    const addNUmber = num + 0; 
     alert(addNUmber)
   }
 
